@@ -6,11 +6,11 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:06:02 by maw               #+#    #+#             */
-/*   Updated: 2024/10/09 14:47:50 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/09 21:39:00 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putnbr_unsigned(unsigned int n, int fd)
 {
@@ -35,19 +35,12 @@ int	ft_putnbr_unsigned(unsigned int n, int fd)
 	return (count);
 }
 
-int	ft_puthexa_fd(int n, int fd)
+int	ft_puthexa_fd(unsigned int num, int fd)
 {
 	char			reste;
-	unsigned int	num;
 	int				count;
 
 	count = 0;
-	if (n < 0)
-	{
-		num = (unsigned int)n;
-	}
-	else
-		num = n;
 	if (num >= 16)
 	{
 		ft_puthexa_fd(num / 16, fd);
@@ -94,7 +87,7 @@ void	put0x(void *ptr)
 
 }
 
-void	ft_puthexa_up_fd(int n, int fd)
+void	ft_puthexa_up_fd(unsigned int n, int fd)
 {
 	char	reste;
 

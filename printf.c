@@ -6,7 +6,7 @@
 /*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:15:59 by maw               #+#    #+#             */
-/*   Updated: 2024/10/08 17:59:13 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/10 00:48:12 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ putnbr
 */
 #include <stdarg.h>
 #include <stdio.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 size_t	ft_division_10(long int num)
 {
@@ -78,16 +78,11 @@ size_t	ft_division_10_unsigned(unsigned int num)
 	return (digit);
 }
 
-size_t	ft_division_16(long int num)
+size_t	ft_division_16(unsigned int num)
 {
 	size_t	digit;
 
 	digit = 0;
-	if (num < 0)
-	{
-		num *= -1;
-		digit++;
-	}
 	if (num == 0)
 		return (1);
 	while (num > 0)
@@ -100,12 +95,14 @@ size_t	ft_division_16(long int num)
 
 size_t	ft_division_16_pointer(void *num)
 {
-	size_t	digit;
-	unsigned long int n;
+	size_t				digit;
+	unsigned long int	n;
 
 	n = (unsigned long int)num;
 
 	digit = 2;
+	if (n == 0)
+		digit++;
 	while (n > 0)
 	{
 		n /= 16;
@@ -122,13 +119,13 @@ int	countchar(char c, va_list ap_copy1)
 	if (c == 'c' || c == 'C')
 		count++;
 	else if (c == 's' || c == 'S')
-		count = ft_strlen(va_arg(ap_copy1, char *));
+		count = ft_strlen_spe(va_arg(ap_copy1, char *));
 	else if (c == 'd' || c == 'i' || c == 'D' || c == 'I')
 		count = ft_division_10(va_arg(ap_copy1, int));
 	else if (c == 'x')
-		count = ft_division_16(va_arg(ap_copy1, int));
+		count = ft_division_16(va_arg(ap_copy1, unsigned int));
 	else if (c == 'X')
-		count = ft_division_16(va_arg(ap_copy1, int));
+		count = ft_division_16(va_arg(ap_copy1, unsigned int));
 	else if (c == 'u' || c == 'U')
 		count = ft_division_10_unsigned(va_arg(ap_copy1, unsigned int));
 	else if (c == '%')
@@ -143,7 +140,7 @@ void	checkflag(char c, va_list *ap)
 	if (c == 'c' || c == 'C')
 		ft_putchar_fd((char)va_arg(*ap, int), 1);
 	else if (c == 's' || c == 'S')
-		ft_putstr_fd(va_arg(*ap, char *), 1);
+		ft_putstr(va_arg(*ap, char *));
 	else if (c == 'd' || c == 'i' || c == 'D' || c == 'I')
 		ft_putnbr_fd(va_arg(*ap, int), 1);
 	else if (c == 'x')
@@ -161,8 +158,7 @@ void	checkflag(char c, va_list *ap)
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	va_list ap_copy1;
-	// va_list ap_copy2;
+	va_list	ap_copy1;
 	int		i;
 	size_t	charcount;
 
@@ -174,47 +170,26 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			// if (format[i] == 'c' || format[i] == 'C')
-			// 	ft_putchar_fd((char)va_arg(ap, int), 1);
-			// if (format[i] == 's' || format[i] == 'S')
-			// 	ft_putstr_fd(va_arg(ap, char *), 1);
-			// if (format[i] == 'd' || format[i] == 'i' || format[i] == 'D' || format[i] == 'I')
-			// 	ft_putnbr_fd(va_arg(ap, int), 1);
-			// if (format[i] == 'x')
-			// 	ft_puthexa_fd(va_arg(ap, int), 1);
-			// if (format[i] == 'X')
-			// 	ft_puthexa_up_fd(va_arg(ap, int), 1);
-			// if (format[i] == 'u' || format[i] == 'U')
-			// 	ft_putnbr_unsigned(va_arg(ap, int), 1);
-			// if (format[i] == '%')
-			// 	ft_putchar_fd('%', 1);
-			// if (format[i] == 'p')
-			// 	put0x(va_arg(ap, void *));
-				// va_copy(ap_copy1, ap);
-				va_copy(ap_copy1, ap);
-				charcount += countchar(format[i], ap_copy1);
-				checkflag(format[i], &ap);
-				va_end(ap_copy1);
+			va_copy(ap_copy1, ap);
+			charcount += countchar(format[i], ap_copy1);
+			checkflag(format[i], &ap);
+			va_end(ap_copy1);
 		}
 		else
-		{
-			ft_putchar_fd(format[i], 1);
-			charcount++;
-		}
-
-	i++;
+			charcount += ft_putchar_spe(format[i], 1);
+		i++;
 	}
 	va_end(ap);
-	return (charcount);	
+	return (charcount);
 }
 
 
 // int main(void)
 // {
-// 	int a = 5;
-// 	int *ptr = &a;
+// 	// int a = NULL;
+// 	// int *ptr = &a;
 
-// 	printf("%d\n" ,ft_printf("je suis %d dans le bussinnes %s et %p \n", 500, "me demande pas pq", ptr));
-// 	printf("%d\n", printf("je suis %d dans le bussinnes %s et %p\n", 500, "me demande pas pq", ptr));
+// 	printf("%d\n" ,ft_printf("%p", NULL));
+// 	printf("%d\n", printf("%p", NULL));
 // 	return (0);
 // }

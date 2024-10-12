@@ -6,13 +6,14 @@
 #    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 17:01:35 by maw               #+#    #+#              #
-#    Updated: 2024/10/08 16:10:35 by maw              ###   ########.fr        #
+#    Updated: 2024/10/09 22:20:52 by maw              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	libftprintf.a
 
 SRCS =	ft_puthexa_fd.c \
+		printf_utils2.c \
 		printf.c
 
 OBJS := $(SRCS:%.c=%.o)
