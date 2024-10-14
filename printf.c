@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:15:59 by maw               #+#    #+#             */
-/*   Updated: 2024/10/10 00:48:12 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/14 17:47:42 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,16 @@ int	ft_printf(const char *format, ...)
 
 	charcount = 0;
 	i = 0;
+	while (format[i])
+	{
+		if (!ft_isascii(format[i]))
+			return (-1);
+		i++;
+	}
 	va_start(ap, format);
+	if (!format)
+		return (-1);
+	i = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -184,12 +193,12 @@ int	ft_printf(const char *format, ...)
 }
 
 
-// int main(void)
-// {
-// 	// int a = NULL;
-// 	// int *ptr = &a;
+int main(void)
+{
+	// int a = NULL;
+	// int *ptr = &a;
 
-// 	printf("%d\n" ,ft_printf("%p", NULL));
-// 	printf("%d\n", printf("%p", NULL));
-// 	return (0);
-// }
+	printf("%d\n" , ft_printf("\001\002\007\v\010\f\r\n"));
+	printf("%d\n" , printf("\001\002\007\v\010\f\r\n"));
+	return (0);
+}
