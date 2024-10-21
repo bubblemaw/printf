@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:18:13 by maw               #+#    #+#             */
-/*   Updated: 2024/08/18 23:45:26 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/11 15:06:24 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,13 @@ int	ft_isprint(int c)
 		return (1);
 	return (0);
 }
+
+/*
+int main()
+{
+	printf("%d\n", ft_isprint('o'));
+	printf("%d\n", ft_isprint('	'));
+	return (0);
+}
+
+*/

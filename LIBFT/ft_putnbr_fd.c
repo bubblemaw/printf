@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:06:43 by maw               #+#    #+#             */
-/*   Updated: 2024/09/01 19:32:14 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/10 18:51:36 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,14 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, &reste, 1);
 	}
 }
+
+/*
+int main()
+{
+	int number;
+
+	number = -90;
+	ft_putnbr_fd(number, 1);
+	return(0);
+}
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:06:02 by maw               #+#    #+#             */
-/*   Updated: 2024/10/20 14:45:00 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/21 16:07:33 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ int	ft_putnbr_unsigned(unsigned int n, int fd)
 	{
 		modulo = n % 10;
 		reste = modulo + '0';
-		ft_putnbr_unsigned(n / 10, fd);
-		count += write(fd, &reste, 1);
+		count += ft_putnbr_unsigned(n / 10, fd);
+		if (write(fd, &reste, 1) == -1)
+			return (-1);
+		count++;
 	}
 	if (n < 10)
 	{
 		reste = n + '0';
-		count += write(fd, &reste, 1);
+		if (write(fd, &reste, 1) == -1)
+			return (-1);
+		count++;
 	}
 	return (count);
 }
@@ -42,7 +46,7 @@ int	ft_puthexa_fd(unsigned int num, int fd)
 	count = 0;
 	if (num >= 16)
 	{
-		ft_puthexa_fd(num / 16, fd);
+		count += ft_puthexa_fd(num / 16, fd);
 		num = num % 16;
 	}
 	if (num < 10)
@@ -68,7 +72,7 @@ int	ft_puthexa_pre(unsigned long int n, int fd)
 	}
 	if (n >= 16)
 	{
-		ft_puthexa_pre(n / 16, fd);
+		count += ft_puthexa_pre(n / 16, fd);
 		n = n % 16;
 	}
 	if (n < 10)
@@ -77,17 +81,26 @@ int	ft_puthexa_pre(unsigned long int n, int fd)
 	}
 	if (n >= 10 && n < 16)
 		reste = (n - 10) + 'a';
-	count += write(fd, &reste, 1);
+	if (write(fd, &reste, 1) == -1)
+		return (-1);
+	count++;
 	return (count);
 }
 
 int	put0x(void *ptr)
 {
 	int	count;
+	int	result;
 
+	result = 0;
 	count = 0;
 	count += write(1, "0x", 2);
-	count += ft_puthexa_pre((unsigned long int)ptr, 1);
+	if (count < 0)
+		return (-1);
+	result = ft_puthexa_pre((unsigned long int)ptr, 1);
+	if (result == -1)
+		return (-1);
+	count += result;
 	return (count);
 }
 
@@ -100,12 +113,12 @@ int	ft_puthexa_up_fd(unsigned int n, int fd)
 	count = 0;
 	if (n < 0)
 	{
-		write(fd, "-", 1);
+		count += write(fd, "-", 1);
 		n *= -1;
 	}
 	if (n >= 16)
 	{
-		ft_puthexa_up_fd(n / 16, fd);
+		count += ft_puthexa_up_fd(n / 16, fd);
 		n = n % 16;
 	}
 	if (n < 10)

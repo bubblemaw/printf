@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:15:59 by maw               #+#    #+#             */
-/*   Updated: 2024/10/20 21:51:17 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/21 17:58:24 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@ int	checkflag(char c, va_list *ap)
 
 	count = 0;
 	if (c == 'c' || c == 'C')
-		count += ft_putchar_spe((char)va_arg(*ap, int), 1);
+		count = ft_putchar_spe((char)va_arg(*ap, int), 1);
 	else if (c == 's' || c == 'S')
-		count += ft_putstr(va_arg(*ap, char *));
+		count = ft_putstr(va_arg(*ap, char *));
 	else if (c == 'd' || c == 'i' || c == 'D' || c == 'I')
-		count += ft_putnbr_fi(va_arg(*ap, int), 1);
+		count = ft_putnbr_fi(va_arg(*ap, int), 1);
 	else if (c == 'x')
-		count += ft_puthexa_fd(va_arg(*ap, int), 1);
+		count = ft_puthexa_fd(va_arg(*ap, int), 1);
 	else if (c == 'X')
-		count += ft_puthexa_up_fd(va_arg(*ap, int), 1);
+		count = ft_puthexa_up_fd(va_arg(*ap, int), 1);
 	else if (c == 'u' || c == 'U')
-		count += ft_putnbr_unsigned(va_arg(*ap, unsigned int), 1);
+		count = ft_putnbr_unsigned(va_arg(*ap, unsigned int), 1);
 	else if (c == '%')
-		count += ft_putchar_spe('%', 1);
+		count = ft_putchar_spe('%', 1);
 	else if (c == 'p')
-		count += put0x(va_arg(*ap, void *));
+		count = put0x(va_arg(*ap, void *));
+	if (count == -1)
+		return (-1);
 	return (count);
 }
 
@@ -42,8 +44,11 @@ int	ft_printf(const char *format, ...)
 	// va_list	ap_copy1;
 	int		i;
 	size_t	charcount;
+	int		count;
 
 	charcount = 0;
+	count = 0;
+
 	i = 0;
 	va_start(ap, format);
 	if (!format)
@@ -56,7 +61,11 @@ int	ft_printf(const char *format, ...)
 			i++;
 			// va_copy(ap_copy1, ap);
 			// charcount += countchar(format[i], ap_copy1);
-			charcount += checkflag(format[i], &ap);
+			count = checkflag(format[i], &ap);
+			if (count == -1)
+				return (-1);
+			charcount += count;
+
 			// va_end(ap_copy1);
 		}
 		else
@@ -73,10 +82,10 @@ int	ft_printf(const char *format, ...)
 
 // int main(void)
 // {
-// 	// int a = NULL;
+// 	// int a = 5;
 // 	// int *ptr = &a;
 
-// 	printf("%d\n" , ft_printf(" %d",-10));
-// 	printf("%d\n" , printf(" %d",-10));
+// 	printf("%d\n" , ft_printf("%%c\n"));
+// 	printf("%d\n" , printf("%%c\n"));
 // 	return (0);
 // }

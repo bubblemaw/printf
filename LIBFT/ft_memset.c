@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:13:40 by maw               #+#    #+#             */
-/*   Updated: 2024/08/31 19:43:34 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/11 14:56:47 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,24 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
+/*
+ Cette fonction permet de remplir une zone mémoire, identifiée par son
+ adresse et sa taille, avec une valeur précise. 
+int main()
+{
+	char numero[] = {99, 88, 77, 55, 44};
+	size_t size = 5 * sizeof(char);
+
+	ft_memset(numero, 22, size);
+	int i = 0;
+	while (i < 5)
+	{
+		printf("[%d]", numero[i]);
+		i++;
+	}
+	printf("\n");
+	return (0);
+
+}
+*/

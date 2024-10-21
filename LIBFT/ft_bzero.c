@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:54:13 by maw               #+#    #+#             */
-/*   Updated: 2024/08/23 17:08:01 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/11 15:02:45 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,8 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
+
+/*
+La fonction bzero() met à 0 (octets contenant « \0 ») les n premiers octets
+du bloc pointé par s.
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:45:26 by maw               #+#    #+#             */
-/*   Updated: 2024/09/23 16:29:13 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/10 16:57:16 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <ctype.h>
+# include <string.h>
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

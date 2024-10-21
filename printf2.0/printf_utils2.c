@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:08:13 by maw               #+#    #+#             */
-/*   Updated: 2024/10/20 21:57:47 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/21 16:59:14 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int static	ft_putnbr_fi(int n, int fd)
+int	ft_putnbr_fi(int n, int fd)
 {
 	int			modulo;
 	char		reste;
@@ -26,20 +26,26 @@ int static	ft_putnbr_fi(int n, int fd)
 	}
 	if (n < 0)
 	{
-		count += write(fd, "-", 1);
+		if (write(fd, "-", 1) == -1)
+			return (-1);
+		count++;
 		n *= -1;
 	}
 	if (n >= 10)
 	{
 		modulo = n % 10;
 		reste = modulo + '0';
-		ft_putnbr_fi(n / 10, fd);
-		count += write(fd, &reste, 1);
+		count += ft_putnbr_fi(n / 10, fd);
+		if (write(fd, &reste, 1) == -1)
+			return (-1);
+		count++;
 	}
 	if (n < 10)
 	{
 		reste = n + '0';
-		count += write(fd, &reste, 1);
+		if (write(fd, &reste, 1) == -1)
+			return (-1);
+		count++;
 	}
 	return (count);
 }
@@ -59,7 +65,9 @@ int	ft_putstr(char *s)
 	}
 	while (s[i])
 	{
-		count += write(1, &s[i], 1);
+		if (write(1, &s[i], 1) == -1)
+			return (-1);
+		count++;
 		i++;
 	}
 	return (count);

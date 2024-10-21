@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 10:54:58 by maw               #+#    #+#             */
-/*   Updated: 2024/08/19 11:29:01 by maw              ###   ########.fr       */
+/*   Updated: 2024/10/10 18:25:36 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	join[i] = '\0';
 	return (join);
 }
+
+/*
+Alloue (avec malloc(3)) et retourne une nouvelle chaîne,
+résultat de la concaténation de s1 et s2.
+
+int main()
+{
+	printf("%s\n" ,ft_strjoin("je ne m'en", " remet pas"));
+	printf("%s\n" ,ft_strjoin("je ne m'en", ""));
+	printf("%s\n" ,ft_strjoin("", "remet pas"));
+	return(0);
+}
+*/
