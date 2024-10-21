@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:08:13 by maw               #+#    #+#             */
-/*   Updated: 2024/10/14 16:47:22 by masase           ###   ########.fr       */
+/*   Updated: 2024/10/20 14:06:35 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ size_t	ft_strlen_spe(const char *str)
 
 int	ft_putchar_spe(char c, int fd)
 {
-	if (!ft_isascii(c))
+	if (write(fd, &c, 1) == -1)
 		return (-1);
-	return (write(fd, &c, 1));
+	return (1);
 }
-

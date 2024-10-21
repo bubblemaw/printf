@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maw <maw@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:15:59 by maw               #+#    #+#             */
-/*   Updated: 2024/10/14 17:47:42 by masase           ###   ########.fr       */
+/*   Updated: 2024/10/20 14:07:28 by maw              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int	countchar(char c, va_list ap_copy1)
 	return (count);
 }
 
-void	checkflag(char c, va_list *ap)
+void 	checkflag(char c, va_list *ap)
 {
 	if (c == 'c' || c == 'C')
 		ft_putchar_fd((char)va_arg(*ap, int), 1);
@@ -164,12 +164,6 @@ int	ft_printf(const char *format, ...)
 
 	charcount = 0;
 	i = 0;
-	while (format[i])
-	{
-		if (!ft_isascii(format[i]))
-			return (-1);
-		i++;
-	}
 	va_start(ap, format);
 	if (!format)
 		return (-1);
@@ -185,20 +179,23 @@ int	ft_printf(const char *format, ...)
 			va_end(ap_copy1);
 		}
 		else
+		{
+			if (ft_putchar_spe(format[i], 1) == -1)
+				return (-1);
 			charcount += ft_putchar_spe(format[i], 1);
+		}
 		i++;
 	}
 	va_end(ap);
 	return (charcount);
 }
 
-
 int main(void)
 {
 	// int a = NULL;
 	// int *ptr = &a;
 
-	printf("%d\n" , ft_printf("\001\002\007\v\010\f\r\n"));
-	printf("%d\n" , printf("\001\002\007\v\010\f\r\n"));
+	printf("%d\n" , ft_printf("%%"));
+	printf("%d\n" , printf("%%"));
 	return (0);
 }

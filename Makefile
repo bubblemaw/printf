@@ -6,13 +6,13 @@
 #    By: maw <maw@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 17:01:35 by maw               #+#    #+#              #
-#    Updated: 2024/10/09 22:20:52 by maw              ###   ########.fr        #
+#    Updated: 2024/10/20 02:07:38 by maw              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	libftprintf.a
 
-SRCS =	ft_puthexa_fd.c \
+SRCS =	printf_utils1.c \
 		printf_utils2.c \
 		printf.c
 
