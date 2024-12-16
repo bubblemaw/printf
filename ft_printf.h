@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:45:26 by maw               #+#    #+#             */
-/*   Updated: 2024/10/21 18:20:20 by masase           ###   ########.fr       */
+/*   Updated: 2024/12/16 13:32:38 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-size_t	ft_strlen_spe(const char *str);
-void	ft_putchar_fd(char c, int fd);
 int		ft_putnbr_fi(int n, int fd);
 int		ft_puthexa_fd(unsigned int n, int fd);
 int		ft_puthexa_up_fd(unsigned int n, int fd);

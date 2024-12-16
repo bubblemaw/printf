@@ -6,7 +6,7 @@
 /*   By: masase <masase@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:06:02 by maw               #+#    #+#             */
-/*   Updated: 2024/10/21 18:14:27 by masase           ###   ########.fr       */
+/*   Updated: 2024/10/24 17:28:41 by masase           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	put0x(void *ptr)
 	count += result;
 	return (count);
 }
-
 
 int	ft_puthexa_up_fd(unsigned int n, int fd)
 {
